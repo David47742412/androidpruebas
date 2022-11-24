@@ -1,26 +1,30 @@
 import { Injectable } from '@nestjs/common';
 import { CreatePersonaDto } from './dto/create-persona.dto';
 import { UpdatePersonaDto } from './dto/update-persona.dto';
+import { PersonaController } from './persona.controller';
 
 @Injectable()
 export class PersonaService {
-  create(createPersonaDto: CreatePersonaDto) {
-    return 'This action adds a new persona';
+
+  private PersonModel: PersonaController
+
+  async create(createPersonaDto: CreatePersonaDto) {
+    return await this.PersonModel.create(createPersonaDto);
   }
 
-  findAll() {
-    return `This action returns all persona`;
+  async findAll() {
+    return await this.PersonModel.findAll();
   }
 
-  findOne(id: string) {
-    return `This action returns a #${id} persona`;
+  async findOne(id: string) {
+    return await this.PersonModel.findOne(id);
   }
 
-  update(id: string, updatePersonaDto: UpdatePersonaDto) {
-    return `This action updates a #${id} persona`;
+  async update(id: string, updatePersonaDto: UpdatePersonaDto) {
+    return await this.PersonModel.update(id, updatePersonaDto);
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} persona`;
+  async remove(id: string) {
+    return await this.PersonModel.remove(id);
   }
 }

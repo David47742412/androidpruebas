@@ -29,6 +29,7 @@ export class PersonaController {
       usuario.updatedAt = this.utily.obtenerfechaactual();
 
       return await this.person.create(usuario);
+
     } catch (error) {
       return {
         message: 'Error con los datos creo XD',
@@ -37,9 +38,9 @@ export class PersonaController {
   }
 
   @Get()
-  findAll() {
+  async findAll() {
     try {
-      return this.person.find();
+      return await this.person.find();
     } catch (error) {
       return {
         message: 'error al devolver los datos',
@@ -48,9 +49,9 @@ export class PersonaController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     try {
-      return this.person.findById(id);
+      return await this.person.findById(id);
     } catch (error) {
       return {
         message: 'Usuario No Encontrado',
@@ -59,11 +60,13 @@ export class PersonaController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePersonaDto: UpdatePersonaDto) {
+  async update(@Param('id') id: string, @Body() updatePersonaDto: UpdatePersonaDto) {
     try {
+      
       updatePersonaDto.updatedAt = updatePersonaDto.updatedAt =
-        this.utily.obtenerfechaactual();
-      return this.person.findByIdAndUpdate(id, updatePersonaDto);
+      this.utily.obtenerfechaactual();
+      return await this.person.findByIdAndUpdate(id, updatePersonaDto);
+
     } catch (error) {
       return {
         message: 'Error al Actualizar un solo dato',
@@ -72,9 +75,9 @@ export class PersonaController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  async remove(@Param('id') id: string) {
     try {
-      return this.person.remove(id);
+      return await this.person.remove(id);
     } catch (error) {
       return {
         message: 'Error al Eliminar un dato',

@@ -7,7 +7,6 @@ import { PersonaSchema, Persona } from './schema/persona.schema';
 
 @Module({
   imports: [
-    PersonaModule,
     MongooseModule.forFeature([
       {
         name: Persona.name,
