@@ -36,13 +36,23 @@ export class PersonaController {
       
       return this.person.find();
     } catch (error) {
-      message: "error al devolver los datos"
+      return { 
+        message: "error al devolver los datos" 
+      }
     }
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.person.findById(id);
+    try {
+      
+      return this.person.findById(id);
+    } catch (error) {
+      return {
+        message: "Usuario No Encontrado"
+      }
+    }
+
   }
 
   @Patch(':id')
