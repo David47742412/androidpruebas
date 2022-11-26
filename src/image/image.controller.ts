@@ -55,7 +55,7 @@ export class ImageController {
       };
     } else {
       const response = {
-        filePath: `http://[::1]:3000/image/picture/${file.filename}`,
+        filePath: `http://ec2-52-90-172-250.compute-1.amazonaws.com/image/picture/${file.filename}`,
       };
       image.image = response.filePath;
       return this.imageService.create(image);
