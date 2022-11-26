@@ -74,11 +74,7 @@ export class ImageController {
 
   @Get(':id')
   async findOne(@Param('id') id: string) {
-    const valor = this.imageService.findOne(+id);
-
-    if (valor) {
-      return this.imageService.findOnaImage(+id);
-    }
+    return this.imageService.findOne(+id);
   }
 
   @Patch(':id')
@@ -115,7 +111,7 @@ export class ImageController {
       };
     } else {
       const response = {
-        filePath: `http://[::1]:3000/image/pictures/${file.filename}`,
+        filePath: `http://ec2-52-90-172-250.compute-1.amazonaws.com/image/pictures/${file.filename}`,
       };
       updateImageDto.image = response.filePath;
       return this.imageService.update(+id, updateImageDto);
