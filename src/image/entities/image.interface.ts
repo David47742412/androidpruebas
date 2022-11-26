@@ -4,4 +4,8 @@ export interface ImageInterface {
 
     image: string;
 
+    image_description: string;
+
+    image_titulo: string;
+
 }
